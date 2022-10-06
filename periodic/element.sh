@@ -1,6 +1,4 @@
-#!/bin/bash
 PSQL="psql -X --username=freecodecamp --dbname=periodic_table --tuples-only -c"
-
 if [[ $1 ]]
   then
    if [[ $1 =~ ^[0-9]+$ ]]
@@ -14,7 +12,6 @@ if [[ $1 ]]
     BOL=$($PSQL "select BOILING_POINT_CELSIUS from elements FULL JOIN PROPERTIES using (atomic_number) full join types using (type_id) where atomic_number=$1")
     SYMBOL_FORMAT=$(echo $SYMBOL | sed 's/( |//')
    RESULT="The element with atomic number $ATOM is $NAME ($SYMBOL_FORMAT). It's a $TYPE, with a mass of $MASS amu. $NAME has a melting point of $MEL celsius and a boiling point of $BOL celsius."
-   
    if [[ -z $ATOM ]]
    then
    echo "I could not find that element in the database."
@@ -33,8 +30,7 @@ if [[ $1 ]]
    SYMBOL_FORMAT=$(echo $SYMBOL | sed 's/( |//')
   
    RESULT="The element with atomic number $ATOM is $NAME ($SYMBOL_FORMAT). It's a $TYPE, with a mass of $MASS amu. $NAME has a melting point of $MEL celsius and a boiling point of $BOL celsius."
-   
-    
+     
   if [[ -z $SYMBOL ]]
    then
    echo "I could not find that element in the database."
@@ -52,9 +48,7 @@ if [[ $1 ]]
     BOL=$($PSQL "select BOILING_POINT_CELSIUS from elements FULL JOIN PROPERTIES using (atomic_number) full join types using (type_id) where name='$1'")
   SYMBOL_FORMAT=$(echo $SYMBOL | sed 's/( |//')
    RESULT="The element with atomic number $ATOM is $NAME ($SYMBOL_FORMAT). It's a $TYPE, with a mass of $MASS amu. $NAME has a melting point of $MEL celsius and a boiling point of $BOL celsius."
-   
-    
-  if [[ -z $NAME ]]
+   if [[ -z $NAME ]]
    then
    echo "I could not find that element in the database."
    else
